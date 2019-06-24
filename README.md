@@ -30,7 +30,7 @@ let client = redis::Client::open("redis://127.0.0.1:6379/0").unwrap();
 let conn = client.get_connection().unwrap();
 
 let queue = Queue::new("name", &conn);
-while true {
+loop {
   match queue.dequeue<Job>() {
     Ok(job) => println!("job: {}", job),
     Err(err) => {
