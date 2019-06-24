@@ -19,7 +19,7 @@ let conn = client.get_connection().unwrap();
 let job = Job { id: 1 }
 
 let queue = Queue::new("name", &conn);
-if let Err(err) = queue.enqueue<Job>(job) {
+if let Err(err) = queue.enqueue::<Job>(job) {
     println!("err: {}", err);
 }
 ```
@@ -31,12 +31,12 @@ let conn = client.get_connection().unwrap();
 
 let queue = Queue::new("name", &conn);
 loop {
-  match queue.dequeue<Job>() {
+  match queue.dequeue::<Job>() {
     Ok(job) => println!("job: {}", job),
     Err(err) => {
         println!("err: {}", err);
         break;
-    }
+    },
   }
 }
 ```
