@@ -1,0 +1,19 @@
+[package]
+name = "fourche"
+version = "0.0.1"
+authors = ["Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>"]
+description = """\
+A simple task queue named after a lion with forked tail \
+(queue fourché), works with Redis.\
+"""
+repository = "https://gitlab.com/grauwoelfchen/fourche"
+keywords = []
+license = "Apache-2.0"
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+redis = "0.*"
+serde = "1.*"
+serde_json = "1.*"
