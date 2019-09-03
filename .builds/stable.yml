@@ -1,0 +1,18 @@
+image: alpine/edge
+packages:
+  - rustup
+  - redis
+sources:
+  - https://git.sr.ht/~grauwoelfchen/fourche
+tasks:
+  - setup: |
+    rustup self update
+    rustup toolchain install stable
+    rustup default stable
+    rustup component add clippy rustfmt
+  - verify-check: |
+    make verify:check
+  - verify-format: |
+    make verify:format
+  - verify-lint: |
+    make verify:lint
