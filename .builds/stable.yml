@@ -9,7 +9,7 @@ sources:
 tasks:
   - setup: |
       rustup-init -y \
-        --default-host x86_64-unknown-linux-musl \
+        --default-host $RUSTUP_OVERRIDE_BUILD_TRIPLE \
         --default-toolchain nightly
       source ~/.cargo/env
       rustup component add clippy rustfmt
