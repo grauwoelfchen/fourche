@@ -2,13 +2,13 @@ use redis::{Commands, Connection, ErrorKind, RedisError, Value};
 use serde::{de::DeserializeOwned, Serialize};
 
 pub struct Queue<'c> {
-    conn: &'c Connection,
+    conn: &'c mut Connection,
     actual_queue: String,
     forked_queue: String,
 }
 
 impl<'c> Queue<'c> {
-    pub fn new(name: &str, conn: &'c Connection) -> Self {
+    pub fn new(name: &str, conn: &'c mut Connection) -> Self {
         let actual_queue = name.to_string();
         let forked_queue = format!("{}:{}", name, "forked");
         Self {
@@ -18,13 +18,13 @@ impl<'c> Queue<'c> {
         }
     }
 
-    pub fn enqueue<T: Serialize>(&self, job: T) -> Result<(), RedisError> {
+    pub fn enqueue<T: Serialize>(&mut self, job: T) -> Result<(), RedisError> {
         let task = serde_json::to_vec(&job).unwrap();
         let queue = self.actual_queue.as_str();
         self.conn.lpush(queue, task)
     }
 
-    pub fn dequeue<T>(&self) -> Result<T, RedisError>
+    pub fn dequeue<T>(&mut self) -> Result<T, RedisError>
     where
         T: DeserializeOwned,
     {
