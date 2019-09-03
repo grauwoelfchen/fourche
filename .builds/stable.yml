@@ -1,4 +1,6 @@
 image: alpine/edge
+environment:
+  RUSTUP_OVERRIDE_BUILD_TRIPLE: x86_64-unknown-linux-musl
 packages:
   - rustup
   - redis
@@ -6,13 +8,20 @@ sources:
   - https://git.sr.ht/~grauwoelfchen/fourche
 tasks:
   - setup: |
-    rustup self update
-    rustup toolchain install stable
-    rustup default stable
-    rustup component add clippy rustfmt
+      rustup-init -y \
+        --default-host x86_64-unknown-linux-musl \
+        --default-toolchain nightly
+      source ~/.cargo/env
+      rustup component add clippy rustfmt
   - verify-check: |
-    make verify:check
+      source ~/.profile
+      cd fourche
+      make verify:check
   - verify-format: |
-    make verify:format
+      source ~/.profile
+      cd fourche
+      make verify:format
   - verify-lint: |
-    make verify:lint
+      source ~/.profile
+      cd fourche
+      make verify:lint
