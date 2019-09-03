@@ -13,15 +13,19 @@ tasks:
         --default-toolchain nightly
       source ~/.cargo/env
       rustup component add clippy rustfmt
-  - verify-check: |
+  - check: |
       source ~/.profile
       cd fourche
       make verify:check
-  - verify-format: |
+  - format: |
       source ~/.profile
       cd fourche
       make verify:format
-  - verify-lint: |
+  - lint: |
       source ~/.profile
       cd fourche
       make verify:lint
+  - build: |
+      source ~/.profile
+      cd fourche
+      make build
