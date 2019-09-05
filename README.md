@@ -18,7 +18,7 @@ let mut conn = client.get_connection().unwrap();
 
 let job = Job { id: 1 }
 
-let queue = Queue::new("name", &conn);
+let mut queue = Queue::new("name", &mut conn);
 if let Err(err) = queue.enqueue::<Job>(job) {
     println!("err: {}", err);
 }
@@ -29,7 +29,7 @@ if let Err(err) = queue.enqueue::<Job>(job) {
 let client = redis::Client::open("redis://127.0.0.1:6379/0").unwrap();
 let mut conn = client.get_connection().unwrap();
 
-let queue = Queue::new("name", &conn);
+let mut queue = Queue::new("name", &mut conn);
 loop {
   match queue.dequeue::<Job>() {
     Ok(job) => println!("job: {}", job),
