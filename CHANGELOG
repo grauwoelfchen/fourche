@@ -1,3 +1,6 @@
+Fri 06 Sep 2019 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
+	* Fix format (add .clippy.toml and .rustfmt.toml)
+
 Wed 04 Sep 2019 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
 	* Version 0.0.2
 	* Update redis >= 0.12.0
