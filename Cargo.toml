@@ -6,9 +6,23 @@ description = """\
 A simple task queue named after a lion with forked tail \
 (queue fourché), works with Redis.\
 """
+documentation = "https://gitlab.com/grauwoelfchen/fourche"
 repository = "https://gitlab.com/grauwoelfchen/fourche"
-keywords = []
+homepage = "https://gitlab.com/grauwoelfchen/fourche"
+readme = "README.md"
+keywords = ["redis", "queue"]
+categories = ["asynchronous"]
 license = "Apache-2.0"
+exclude = [
+  ".builds/*",
+  "Makefile",
+  "/.clippy.toml",
+  "/.rustfmt.toml",
+]
+edition = "2018"
+
+[profile.release]
+panic = "abort"
 
 [lib]
 path = "src/lib.rs"
