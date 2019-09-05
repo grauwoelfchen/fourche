@@ -14,7 +14,7 @@ struct Job {id: u64 }
 ```rust
 // enqueue
 let client = redis::Client::open("redis://127.0.0.1:6379/0").unwrap();
-let conn = client.get_connection().unwrap();
+let mut conn = client.get_connection().unwrap();
 
 let job = Job { id: 1 }
 
@@ -27,7 +27,7 @@ if let Err(err) = queue.enqueue::<Job>(job) {
 ```rust
 // dequeue
 let client = redis::Client::open("redis://127.0.0.1:6379/0").unwrap();
-let conn = client.get_connection().unwrap();
+let mut conn = client.get_connection().unwrap();
 
 let queue = Queue::new("name", &conn);
 loop {
