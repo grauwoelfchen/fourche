@@ -12,7 +12,11 @@ tasks:
         --default-host $RUSTUP_OVERRIDE_BUILD_TRIPLE \
         --default-toolchain nightly
       source ~/.cargo/env
+      rustup set profile minimal
       rustup component add clippy rustfmt
+      rustup --version
+      rustc --version
+      cargo --version
   - check: |
       source ~/.profile
       cd fourche
