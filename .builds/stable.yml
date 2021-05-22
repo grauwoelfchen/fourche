@@ -10,7 +10,7 @@ tasks:
   - setup: |
       rustup-init -y \
         --default-host $RUSTUP_OVERRIDE_BUILD_TRIPLE \
-        --default-toolchain nightly
+        --default-toolchain stable
       source ~/.cargo/env
       rustup component add clippy rustfmt
   - check: |
