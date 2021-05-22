@@ -1,3 +1,6 @@
+Sun 23 May 2021 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
+	* Update redis >= 0.20.1
+
 Fri 06 Sep 2019 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
 	* Version 0.1.1
 	* Fix sample in README.md
