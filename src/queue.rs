@@ -41,7 +41,7 @@ impl<'c> Queue<'c> {
                             format!("err: {}", e),
                         ))
                     })
-                }
+                },
                 _ => Err(From::from((ErrorKind::TypeError, "unknown"))),
             },
             Err(e) => Err(e),
