@@ -33,15 +33,13 @@ impl<'c> Queue<'c> {
 
         match self.conn.brpoplpush(actual_queue, forked_queue, 0) {
             Ok(ref value) => match *value {
-                Value::Data(ref v) => {
-                    serde_json::from_slice(v).map_err(|e| {
-                        From::from((
-                            ErrorKind::TypeError,
-                            "invalid",
-                            format!("err: {}", e),
-                        ))
-                    })
-                },
+                Value::Data(ref v) => serde_json::from_slice(v).map_err(|e| {
+                    From::from((
+                        ErrorKind::TypeError,
+                        "invalid",
+                        format!("err: {}", e),
+                    ))
+                }),
                 _ => Err(From::from((ErrorKind::TypeError, "unknown"))),
             },
             Err(e) => Err(e),
