@@ -1,25 +1,31 @@
 [package]
 name = "fourche"
-version = "0.2.0"
-authors = ["Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>"]
 description = """\
 A simple task queue named after a lion with forked tail \
 (queue fourché), works with Redis.\
 """
-documentation = "https://gitlab.com/grauwoelfchen/fourche"
-repository = "https://gitlab.com/grauwoelfchen/fourche"
-homepage = "https://gitlab.com/grauwoelfchen/fourche"
+version = "0.2.0"
+edition = "2018"
+
+authors = ["Yasha <yasuhiro.asaka@grauwoelfchen.net>"]
+homepage = "https://codeberg.org/grauwoelfchen/fourche"
 readme = "README.md"
 keywords = ["redis", "queue"]
 categories = ["asynchronous"]
+documentation = "https://docs.rs/crate/fourche"
+repository = "https://codeberg.org/grauwoelfchen/fourche"
 license = "Apache-2.0"
+
 exclude = [
+  ".cache",
+  ".cargo-huskey",
   ".builds/*",
   "Makefile",
-  "/.clippy.toml",
-  "/.rustfmt.toml",
+  "rust-toolchain",
+  ".clippy.toml",
+  ".rustfmt.toml",
+  ".gitignore",
 ]
-edition = "2018"
 
 [profile.release]
 panic = "abort"
