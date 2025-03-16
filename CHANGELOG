@@ -1,4 +1,8 @@
 Mon 17 Mar 2025 Yasha <yasuhiro.asaka@grauwoelfchen.net>
+	Add cargo-husky
+
+	* .cargo-husky/hooks/pre-commit: Run vet-all and test-all
+
 	Update copyright years
 
 	Add integration tests (with a lock by using Mutex)
