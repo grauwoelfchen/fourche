@@ -25,11 +25,15 @@ lint: | verify\:lint
 # }}}
 
 # test {{{
-test\:all:  ## Run all unit tests [alias: test]
-	@cargo test --lib
-.PHONY: test\:all
+test\:integration:  ## Run integration tests
+	@cargo test --test integration
+.PHONY: test\:integration
 
-test: | test\:all
+test\:unit:  ## Run unit tests
+	@cargo test --lib
+.PHONY: test\:unit
+
+test: | test\:unit test\:integration
 .PHONY: test
 # }}}
 
