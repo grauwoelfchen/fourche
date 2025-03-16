@@ -1,5 +1,5 @@
 # https://github.com/rust-lang-nursery/rustfmt/blob/master/Configurations.md
-fn_args_layout = "Tall"
+fn_params_layout = "Tall"
 force_explicit_abi = true
 hard_tabs = false
 match_arm_leading_pipes = "Never"
