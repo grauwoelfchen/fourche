@@ -1,10 +1,6 @@
 # Fourché
 
-[![pipeline](
-https://gitlab.com/grauwoelfchen/fourche/badges/trunk/pipeline.svg)](
-https://gitlab.com/grauwoelfchen/fourche/commits/trunk) [![coverage](
-https://gitlab.com/grauwoelfchen/fourche/badges/trunk/coverage.svg)](
-https://gitlab.com/grauwoelfchen/fourche/commits/trunk) [![crate::fourche](
+[![crate::fourche](
 https://img.shields.io/crates/v/fourche?label=crates&style=flat)](
 https://crates.io/crates/fourche) [![doc::fourche](
 https://docs.rs/fourche/badge.svg)](https://docs.rs/crate/fourche)
@@ -14,19 +10,15 @@ works with Redis.
 
 ## Repositories
 
-This is mainly developed on [GitLab.com](
-https://gitlab.com/grauwoelfchen/fourche), but the source code is hosted also
-in several following repositories.
+This library is developed mainly on [Codeberg.org](
+https://codeberg.org/grauwoelfchen/fourche), but the source code is hosted also
+on [sourcehut](https://git.sr.ht/~grauwoelfchen/fourche).
 
-Any merge/pull requests or issues on any repository are welcomed.
-
-* https://gitlab.com/grauwoelfchen/fourche
-* https://github.com/grauwoelfchen/fourche
-* https://git.sr.ht/~grauwoelfchen/fourche
+Any patches, merge/pull requests or issues on those repositories are welcomed.
 
 ```zsh
 # the main branch is "trunk"
-% git clone git@gitlab.com:grauwoelfchen/fourche.git
+% git clone git@codeberg.org:grauwoelfchen/fourche.git
 % git --no-pager branch -v
 * trunk xxxxxxx XXX
 ```
@@ -41,7 +33,7 @@ Any merge/pull requests or issues on any repository are welcomed.
 
 ```rust
 #[derive(Debug, Deserialize, Serialize)]
-struct Job {id: u64 }
+struct Job { id: u64 }
 ```
 
 ```rust
