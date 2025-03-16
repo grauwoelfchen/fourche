@@ -27,6 +27,9 @@ exclude = [
   ".gitignore",
 ]
 
+[badges]
+maintenance = { status = "experimental" } # at least while 0.x
+
 [profile.release]
 panic = "abort"
 
