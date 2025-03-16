@@ -28,6 +28,6 @@ panic = "abort"
 path = "src/lib.rs"
 
 [dependencies]
-redis = "^0.20.1"
+redis = "^0.29"
 serde = "1.*"
 serde_json = "1.*"
