@@ -1,66 +1,81 @@
-# verify {{{
-verify\:check:  ## Verify code syntax [alias: check]
+# vet
+vet-check: # Verify code syntax [synonym: check]
 	@cargo check --all --verbose
-.PHONY: verify\:check
+.PHONY: vet-check
 
-check: | verify\:check
+check: vet-check
 .PHONY: check
 
-verify\:format:  ## Verify format without changes [alias: verify:fmt, format, fmt]
+vet-format: # Check formats without changes [synonym: format, fmt]
 	@cargo fmt --all -- --check
-.PHONY: verify\:format
+.PHONY: vet-format
 
-format: | verify\:format
+format: vet-format
 .PHONY: format
 
-fmt: | verify\:format
+fmt: vet-format
 .PHONY: fmt
 
-verify\:lint:  ## Verify coding style using clippy [alias: lint]
+vet-lint: # Apply lint checks [synonym: lint]
 	@cargo clippy --all-targets
-.PHONY: verify\:lint
+.PHONY: vet-lint
 
-lint: | verify\:lint
+lint: vet-lint
 .PHONY: lint
-# }}}
 
-# test {{{
-test\:integration:  ## Run integration tests
+vet-all: vet-check vet-format vet-lint # Check all vet targets [synonym: vet]
+.PHONY: vet-all
+
+vet: vet-all
+.PHONY: vet
+
+# test
+test-integration: # Run integration tests
 	@cargo test --test integration
-.PHONY: test\:integration
+.PHONY: test-integration
 
-test\:unit:  ## Run unit tests
+test-unit: # Run unit tests
 	@cargo test --lib
-.PHONY: test\:unit
+.PHONY: test-unit
 
-test: | test\:unit test\:integration
+test-all: test-unit test-integration # Run all tests [synonym: test]
+.PHONY: test-all
+
+test: test-all
 .PHONY: test
-# }}}
 
-# build {{{
-build\:debug:  ## Build in debug mode [alias: build]
+# build
+build-debug: # Build in debug mode [synonym: build]
 	cargo build
-.PHONY: build\:debug
+.PHONY: build-debug
 
-build: | build\:debug
+build: build-debug
 .PHONY: build
 # }}}
 
-# utilities {{{
-clean:  ## Clean up
+# utility
+clean: # Clean up
 	@cargo clean
 .PHONY: clean
 
-help:  ## Display this message
-	@grep -E '^[0-9a-z\:\\]+: ' $(MAKEFILE_LIST) | \
-	  grep -E '  ## ' | \
-	  sed -e 's/\(\s|\(\s[0-9a-z\:\\]*\)*\)  /  /' | \
-	  tr -d \\\\ | \
-	  awk 'BEGIN {FS = ":  ## "};  \
-	       {printf "\033[38;05;222m%-14s\033[0m %s\n", $$1, $$2}' | \
-	  sort
-.PHONY: help
-# }}}
+package: # Create the crate package
+	@cargo package
+.PHONY: package
 
-.DEFAULT_GOAL = test:all
-default: verify\:check verify\:format verify\:lint test\:all
+publish: # Publish the crate package
+	@cargo publish
+.PHONY: publish
+
+help: # Display this message
+	@set -uo pipefail; \
+	grep --extended-regexp '^[-_0-9a-z\%\:\\ ]+: ' \
+		$(firstword $(MAKEFILE_LIST)) | \
+		grep --extended-regexp ' # ' | \
+		sed --expression='s/\( [-_0-9a-z\%\:\\ ]*\) #/ #/' | \
+		tr --delete \\\\ | \
+		awk 'BEGIN {FS = ": # "}; \
+			{printf "\033[38;05;222m%-17s\033[0m %s\n", $$1, $$2}' | \
+		sort
+.PHONY: help
+
+.DEFAULT_GOAL := test
