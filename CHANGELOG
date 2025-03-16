@@ -1,3 +1,12 @@
+Mon 17 Mar 2025 Yasha <yasuhiro.asaka@grauwoelfchen.net>
+	Update copyright years
+
+	Add integration tests (with a lock by using Mutex)
+
+	* test/test.rs, test/queue.rs: Add simple enqueue/dequeue tests
+
+	Update redis to support v0.29.x
+
 Tue 07 Mar 2023 Yasha <yasuhiro.asaka@grauwoelfchen.net>
 	Remove .build.yml for Rust nightly (focus only on stable)
 
