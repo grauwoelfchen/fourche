@@ -1,5 +1,6 @@
 use redis::{Commands, Connection, ErrorKind, RedisError, Value};
 use serde::{de::DeserializeOwned, Serialize};
+use serde_json;
 
 pub struct Queue<'c> {
     conn: &'c mut Connection,
