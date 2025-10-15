@@ -1,6 +1,8 @@
+---
 image: alpine/edge
 environment:
   RUSTUP_OVERRIDE_BUILD_TRIPLE: x86_64-unknown-linux-musl
+  CARGO_HUSKEY_DONT_INSTALL_HOOKS: true
 packages:
   - rustup
   - redis
@@ -18,14 +20,23 @@ tasks:
       rustc --version
       cargo --version
   - check: |
+      source ~/.cargo/env
       cd fourche
-      make verify:check
+      make vet-check
   - format: |
+      source ~/.cargo/env
       cd fourche
-      make verify:format
+      make vet-format
   - lint: |
+      source ~/.cargo/env
       cd fourche
-      make verify:lint
+      make vet-lint
+  # NOTE: no integration test
+  - test: |
+      source ~/.cargo/env
+      cd fourche
+      make test-unit
   - build: |
+      source ~/.cargo/env
       cd fourche
       make build
