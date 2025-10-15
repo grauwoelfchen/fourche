@@ -26,24 +26,34 @@ Any patches, merge/pull requests or issues on those repositories are welcomed.
 ## Installation
 
 ```zsh
-% cargo install fourche
+# eg. async
+% cargo install fourche --feature="async"
 ```
 
 ## Example
 
 ```rust
 #[derive(Debug, Deserialize, Serialize)]
-struct Job { id: u64 }
+struct Job<T: Serialize> {
+  id: T,
+}
+```
+
+### Sync
+
+#### feature: `sync` (default)
+
+```rust
+let client = redis::Client::open("redis://127.0.0.1:6379/0").unwrap();
+let mut conn = client.get_connection().unwrap();
+
+let job = Job::<i64> { id: 1 }
+
+let mut queue = Queue::new("name", &mut conn);
 ```
 
 ```rust
 // enqueue
-let client = redis::Client::open("redis://127.0.0.1:6379/0").unwrap();
-let mut conn = client.get_connection().unwrap();
-
-let job = Job { id: 1 }
-
-let mut queue = Queue::new("name", &mut conn);
 if let Err(err) = queue.enqueue::<Job>(job) {
     println!("err: {}", err);
 }
@@ -51,12 +61,41 @@ if let Err(err) = queue.enqueue::<Job>(job) {
 
 ```rust
 // dequeue
-let client = redis::Client::open("redis://127.0.0.1:6379/0").unwrap();
-let mut conn = client.get_connection().unwrap();
-
-let mut queue = Queue::new("name", &mut conn);
 loop {
   match queue.dequeue::<Job>() {
+    Ok(job) => println!("job: {}", job),
+    Err(err) => {
+        println!("err: {}", err);
+        break;
+    },
+  }
+}
+```
+
+### Async
+
+#### feature: `async`
+
+```rust
+let client = redis::Client::open("redis://127.0.0.1:6379/1").unwrap();
+let mut conn = client.get_multiplexed_async_connection().await.unwrap();
+
+let job = Job::<i64> { id: 1 }
+
+let mut queue = AsyncQueue::new("name", &mut conn);
+```
+
+```rust
+// enqueue
+if let Err(err) = queue.enqueue::<Job<_>>(job).await {
+    println!("err: {}", err);
+}
+```
+
+```rust
+// dequeue
+loop {
+  match queue.dequeue::<Job>().await {
     Ok(job) => println!("job: {}", job),
     Err(err) => {
         println!("err: {}", err);
