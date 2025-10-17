@@ -1,7 +1,6 @@
 use redis::{AsyncCommands, Direction, ErrorKind, RedisError, Value};
 use redis::aio::MultiplexedConnection;
 use serde::{de::DeserializeOwned, Serialize};
-use serde_json;
 
 // TODO: use fourche
 pub struct AsyncQueue<'c> {
