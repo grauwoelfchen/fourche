@@ -2,7 +2,7 @@ use redis::AsyncCommands;
 use serde::{Deserialize, Serialize};
 
 #[cfg(feature = "async")]
-use fourche::async_queue::AsyncQueue;
+use fourche::AsyncQueue;
 
 #[cfg(feature = "async")]
 use crate::run_test_async;

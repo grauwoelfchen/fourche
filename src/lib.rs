@@ -2,7 +2,13 @@ extern crate redis;
 extern crate serde;
 
 #[cfg(feature = "sync")]
-pub mod queue;
+mod queue;
+
+#[cfg(feature = "sync")]
+pub use queue::Queue;
 
 #[cfg(feature = "async")]
-pub mod async_queue;
+mod async_queue;
+
+#[cfg(feature = "async")]
+pub use async_queue::AsyncQueue;

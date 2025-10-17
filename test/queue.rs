@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use redis::Commands;
 
-use fourche::queue::Queue;
+use fourche::Queue;
 
 use crate::run_test;
 

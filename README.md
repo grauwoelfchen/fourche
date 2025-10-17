@@ -33,6 +33,8 @@ Any patches, merge/pull requests or issues on those repositories are welcomed.
 ## Example
 
 ```rust
+use serde::{Deserialize, Serialize};
+
 #[derive(Debug, Deserialize, Serialize)]
 struct Job<T: Serialize> {
   id: T,
@@ -44,6 +46,9 @@ struct Job<T: Serialize> {
 #### feature: `sync` (default)
 
 ```rust
+use fourche::Queue;
+use redis::Commands;
+
 let client = redis::Client::open("redis://127.0.0.1:6379/0").unwrap();
 let mut conn = client.get_connection().unwrap();
 
@@ -77,6 +82,9 @@ loop {
 #### feature: `async`
 
 ```rust
+use fourche::AsyncQueue;
+use redis::AsyncCommands;
+
 let client = redis::Client::open("redis://127.0.0.1:6379/1").unwrap();
 let mut conn = client.get_multiplexed_async_connection().await.unwrap();
 
