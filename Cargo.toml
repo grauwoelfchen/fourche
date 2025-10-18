@@ -22,6 +22,7 @@ exclude = [
   ".builds/*",
   "Makefile",
   "rust-toolchain",
+  ".build.yml",
   ".clippy.toml",
   ".rustfmt.toml",
   ".gitignore",
