@@ -1,3 +1,13 @@
+Sun 19 Oct 2025 Yasha <yasuhiro.asaka@grauwoelfchen.net>
+	Add async feature
+  https://codeberg.org/grauwoelfchen/fourche/pulls/1
+
+  * Export Queue and AsyncQueue at the crate level (eg. fourche::Queue)
+  * Update examples in README.md
+  * Add sync (default) and async feature
+  * Add async interface (AsyncQueue struct)
+  * Fix build on builds.sr.ht (link)
+
 Mon 17 Mar 2025 Yasha <yasuhiro.asaka@grauwoelfchen.net>
 	New version release (tag v0.3.0)
 
