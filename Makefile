@@ -1,13 +1,13 @@
 # vet
 vet-check: # Verify code syntax [synonym: check]
-	@cargo check --all --verbose
+	@cargo check --future-incompat-report --all-features --verbose
 .PHONY: vet-check
 
 check: vet-check
 .PHONY: check
 
 vet-format: # Check formats without changes [synonym: format, fmt]
-	@cargo fmt --all -- --check
+	@cargo fmt --all --check
 .PHONY: vet-format
 
 format: vet-format
@@ -17,7 +17,7 @@ fmt: vet-format
 .PHONY: fmt
 
 vet-lint: # Apply lint checks [synonym: lint]
-	@cargo clippy --all-targets
+	@cargo clippy --all-features
 .PHONY: vet-lint
 
 lint: vet-lint
@@ -31,11 +31,11 @@ vet: vet-all
 
 # test
 test-integration: # Run integration tests
-	@cargo test --test integration
+	@cargo test --test integration --all-features
 .PHONY: test-integration
 
 test-unit: # Run unit tests
-	@cargo test --lib
+	@cargo test --lib --all-features
 .PHONY: test-unit
 
 test-all: test-unit test-integration # Run all tests [synonym: test]

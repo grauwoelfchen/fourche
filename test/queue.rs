@@ -1,6 +1,7 @@
-use fourche::queue::Queue;
 use serde::{Deserialize, Serialize};
 use redis::Commands;
+
+use fourche::Queue;
 
 use crate::run_test;
 
@@ -11,11 +12,11 @@ struct Job<T: Serialize> {
 
 #[test]
 fn test_enqueue() {
-    run_test(|conn| {
+    run_test(|mut conn| {
         let job = Job::<i64> { id: 1 };
 
         let name = "test";
-        let mut queue = Queue::new(name, conn);
+        let mut queue = Queue::new(name, &mut conn);
         if let Err(err) = queue.enqueue::<Job<_>>(job) {
             eprintln!("err: {}", err);
         }
@@ -27,11 +28,11 @@ fn test_enqueue() {
 
 #[test]
 fn test_dequeue() {
-    run_test(|conn| {
+    run_test(|mut conn| {
         let job = Job::<i64> { id: 1 };
 
         let name = "test";
-        let mut queue = Queue::new(name, conn);
+        let mut queue = Queue::new(name, &mut conn);
         if let Err(err) = queue.enqueue::<Job<_>>(job) {
             eprintln!("err: {}", err);
         }
