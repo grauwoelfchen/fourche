@@ -1,3 +1,10 @@
+> [!NOTE]
+>
+> This repository has been moved. Please check the new locations below.
+>
+> * [~grauwoelfchen/fourche](https://git.sr.ht/~grauwoelfchen/fourche) on Sourcehut
+> * [grauwoelfchen/fourche](https://codeberg.org/grauwoelfchen/fourche) on Codeberg
+
 # Fourché
 
 [![crate::fourche](
