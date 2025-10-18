@@ -1,4 +1,6 @@
 Sun 19 Oct 2025 Yasha <yasuhiro.asaka@grauwoelfchen.net>
+	Exclude .build.yml from the built package
+
 	New version release (tag v0.4.0)
 
 	* Cargo.toml: version 0.4.0
